@@ -2,6 +2,7 @@
 import scrapy
 from performance.spiders.parse_table import table_parse
 
+
 class WhxcSpider(scrapy.Spider):
     name = 'whxc'
     allowed_domains = ['www.whxc.org.cn']
@@ -27,6 +28,7 @@ class WhxcSpider(scrapy.Spider):
         table_parse(response, '/html/body/section/div[2]/article/div[2]/div/table/tbody')
 
     def parse(self, response):
+        pass
         # 从爬虫开始的目录首页里，获得内容页面的标题名称和链接的列表
         page_list = response.xpath('/html/body/section/div[3]/article/dl/dd/h2/a/@href').extract()
         title_list = response.xpath('/html/body/section/div[3]/article/dl/dd/h2/a/text()').extract()
@@ -37,7 +39,7 @@ class WhxcSpider(scrapy.Spider):
                 page_title_list = [[page_list[0], title_list[0]]]
             else:
                 page_title_list.append([page_list[i], title_list[i]])
-        # 对二维列表[href, title] 遍厉，根据 title 选择内容页面做相应的数据爬取
+        # 对二维列表[href, title] 遍历，根据 title 选择内容页面做相应的数据爬取
         for page in page_title_list:
             print(page[0])
             print(page[1])
