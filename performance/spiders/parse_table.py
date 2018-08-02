@@ -63,5 +63,8 @@ def table_parse(response, table_xpath):
                     table_flag[r][c + n] = 1
             c += 1
     # 打印出已爬取的表格的二维列表
-    for r2 in range(row):
-        print(show_table[r2])
+    # for r in range(row):
+    #     print(show_table[r])
+
+    # 返回已爬取的表格二维列表
+    return show_table
